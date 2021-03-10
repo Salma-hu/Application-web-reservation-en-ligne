@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using AppReservation.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,13 @@ namespace AppReservation.Data
             : base(options)
         {
         }
+
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<TypeReservation> TypeReservations { get; set; }
+
+
+
     }
 }

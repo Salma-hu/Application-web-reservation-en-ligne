@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AppReservation.Data;
+using AppReservation.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +13,27 @@ namespace AppReservation.Controllers
 {
     public class ReservationController : Controller
     {
-        // GET: ReservationController
-        public ActionResult Index()
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+        public ReservationController(ApplicationDbContext context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
+            _context = context;
+            _userManager = userManager;
+            _roleManager = roleManager;
+        }
+
+        // GET: ReservationController
+        public async Task < ActionResult> Index()
+        {
+            //var m = await _context.Reservations.FromSqlRaw<Reservation>($"FilterByUser()").ToListAsync();
+            //var list = await _context.Reservations;
+            // View(m);
             return View();
+            
+
+
         }
 
         // GET: ReservationController/Details/5

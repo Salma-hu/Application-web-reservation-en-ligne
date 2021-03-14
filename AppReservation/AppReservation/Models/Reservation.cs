@@ -11,6 +11,8 @@ namespace AppReservation.Models
         public DateTime Date { get; set; }
         public string Status { get; set; }
         public string Cause { get; set; }
+        
+        public string StudentId { get; set; }
         public Student Student { get; set; }
         public TypeReservation Reserv { get; set; }
 

@@ -171,3 +171,4 @@ C:\Users\Youcode\Desktop\Les briefs\Application-web-reservation-en-ligne\AppRese
 C:\Users\Youcode\Desktop\Les briefs\Application-web-reservation-en-ligne\AppReservation\AppReservation\obj\Debug\netcoreapp3.1\Razor\Views\TypeReservation\Create.cshtml.g.cs
 C:\Users\Youcode\Desktop\Les briefs\Application-web-reservation-en-ligne\AppReservation\AppReservation\obj\Debug\netcoreapp3.1\Razor\Views\TypeReservation\Edit.cshtml.g.cs
 C:\Users\Youcode\Desktop\Les briefs\Application-web-reservation-en-ligne\AppReservation\AppReservation\obj\Debug\netcoreapp3.1\Razor\Views\TypeReservation\Delete.cshtml.g.cs
+C:\Users\Youcode\Desktop\Les briefs\Application-web-reservation-en-ligne\AppReservation\AppReservation\obj\Debug\netcoreapp3.1\Razor\Views\Reservation\Index.cshtml.g.cs

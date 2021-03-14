@@ -22,18 +22,16 @@ namespace AppReservation.Controllers
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
-        }
-
+        }               
+                        
         // GET: ReservationController
-        public async Task < ActionResult> Index()
+        public async Task <ActionResult> Index()
         {
-            //var m = await _context.Reservations.FromSqlRaw<Reservation>($"FilterByUser()").ToListAsync();
-            //var list = await _context.Reservations;
-            // View(m);
-            return View();
-            
-
-
+            var list = await _context.Reservations
+                .Include(t=> t.Reserv)
+                .Include(s => s.Student)
+                .ToListAsync();
+            return View("Index",list);
         }
 
         // GET: ReservationController/Details/5
@@ -51,17 +49,19 @@ namespace AppReservation.Controllers
         // POST: ReservationController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        /*public async Task <ActionResult> Create(Reservation reservation)
         {
             try
             {
+                await _context.Reservations.AddAsync(reservation);
+                
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
                 return View();
             }
-        }
+        }*/
 
         // GET: ReservationController/Edit/5
         public ActionResult Edit(int id)

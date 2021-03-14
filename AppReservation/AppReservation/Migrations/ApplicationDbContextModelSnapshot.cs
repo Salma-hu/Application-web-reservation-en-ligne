@@ -14,8 +14,8 @@ namespace AppReservation.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.11")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64)
+                .HasAnnotation("ProductVersion", "5.0.4");
 
             modelBuilder.Entity("AppReservation.Models.Reservation", b =>
                 {
@@ -74,18 +74,18 @@ namespace AppReservation.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4");
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex");
+                        .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
                 });
@@ -130,8 +130,8 @@ namespace AppReservation.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Email")
-                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("tinyint(1)");
@@ -143,12 +143,12 @@ namespace AppReservation.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -166,17 +166,17 @@ namespace AppReservation.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
+                        .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex");
+                        .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
 
@@ -209,12 +209,12 @@ namespace AppReservation.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
-                        .HasMaxLength(128);
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128) CHARACTER SET utf8mb4");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
-                        .HasMaxLength(128);
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128) CHARACTER SET utf8mb4");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -251,12 +251,12 @@ namespace AppReservation.Migrations
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
-                        .HasMaxLength(128);
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128) CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
-                        .HasMaxLength(128);
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128) CHARACTER SET utf8mb4");
 
                     b.Property<string>("Value")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -298,6 +298,10 @@ namespace AppReservation.Migrations
                     b.HasOne("AppReservation.Models.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId");
+
+                    b.Navigation("Reserv");
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -15,16 +15,10 @@ namespace AppReservation.Data
         {
         }
 
-        public DbSet<Student> Students { get; set; }
-
-        internal Task Reservation()
-        {
-            throw new NotImplementedException();
-        }
-
-        public DbSet<Admin> Admins { get; set; }
-        public DbSet<Reservation> Reservations { get; set; }
-        public DbSet<TypeReservation> TypeReservations { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; }
+        public virtual DbSet<Reservation> Reservations { get; set; }
+        public virtual DbSet<TypeReservation> TypeReservations { get; set; }
 
 
 

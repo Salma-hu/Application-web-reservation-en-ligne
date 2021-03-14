@@ -12,8 +12,7 @@ namespace AppReservation.Models
         public string Status { get; set; }
         public string Cause { get; set; }
         public Student Student { get; set; }
-        public TypeReservation  Reserv { get; set; }
-
+        public TypeReservation Reserv { get; set; }
 
     }
 }

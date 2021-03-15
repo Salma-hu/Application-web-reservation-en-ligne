@@ -37,6 +37,7 @@ namespace AppReservation.Controllers
             var UserReservation = await _context.Reservations
                 .Select(res => new ResStudentViewModel
                 {
+                    Id = res.Id,
                     StudentId = res.StudentId,
                     Date = res.Date,
                     Status = res.Status,
@@ -52,7 +53,46 @@ namespace AppReservation.Controllers
         // GET: StudentReservationController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            if (id < 1 )
+            {
+                return NotFound();
+            }
+
+            var reservation = _context.Reservations
+                .First(m => m.Id == id);
+                
+            //ResStudentViewModel resStudentView = new ResStudentViewModel
+            //{
+            //    Id = reservation.Id,
+            //    StudentId = reservation.StudentId,
+            //    Date = reservation.Date,
+            //    Status = reservation.Status,
+            //    Cause = reservation.Cause,
+            //    ReservationTypeId = reservation.Reserv.Id,
+            //    Name = reservation.Reserv.name,
+            //    Student = reservation.Student,
+            //}
+
+            //.Select(m => new ResStudentViewModel
+            // {
+            //     Id = m.Id,
+            //     StudentId = m.StudentId,
+            //     Date = m.Date,
+            //     Status = m.Status,
+            //     Cause = m.Cause,
+            //     ReservationTypeId = m.Reserv.Id,
+            //     Name = m.Reserv.name,
+            //     Student = m.Student,
+            //     //CreateDate = m.CreateDate,
+            // });
+            if (reservation == null)
+            {
+                return NotFound();
+            }
+
+            return View(reservation);
+            
+            
         }
 
         // GET: StudentReservationController/Create
@@ -72,72 +112,109 @@ namespace AppReservation.Controllers
         [ValidateAntiForgeryToken]
         public async Task <ActionResult> Create(ResStudentViewModel studentReservation)
         {
-            try
+            if (ModelState.IsValid)
             {
+
                 var IdUser = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var resType = _context.TypeReservations.Single(t => t.Id == studentReservation.ReservationTypeId);
-                var user = (Student) await _userManager.FindByIdAsync(IdUser);
                 var reservation = new Reservation
                 {
-                    
-                    Date= studentReservation.Date ,
-                    Status= studentReservation.Status ,
-                    Cause= studentReservation.Cause,
-                    StudentId= studentReservation.StudentId,
-                    Reserv= resType
+
+                    Date = studentReservation.Date,
+                    Status = studentReservation.Status,
+                    Cause = studentReservation.Cause,
+                    StudentId = IdUser,
+                    Reserv = resType
 
                 };
 
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+                
+           
             }
-            catch
-            {
-                return View(studentReservation);
-            }
+            return View(studentReservation);
         }
+
+
 
         // GET: StudentReservationController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            //if (id < 1)
+            //{
+            //    return NotFound();
+            //}
+
+            //var reservation = await _context.Reservations.FindAsync(id);
+            //if (reservation == null)
+            //{
+            //    return NotFound();
+            //}
+            return View(reservation);
         }
 
         // POST: StudentReservationController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, [Bind("Id,Date,Status,Cause,CreateDate")] Reservation reservation)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            //if (id != reservation.Id)
+            //{
+            //    return NotFound();
+            //}
+
+            //if (ModelState.IsValid)
+            //{
+            //    try
+            //    {
+            //        _context.Update(reservation);
+            //        await _context.SaveChangesAsync();
+            //    }
+            //    catch (DbUpdateConcurrencyException)
+            //    {
+            //        if ((reservation.Id))
+            //        {
+            //            return NotFound();
+            //        }
+            //        else
+            //        {
+            //            throw;
+            //        }
+            //    }
+            //    return RedirectToAction(nameof(Index));
+            //}
+            return View(reservation);
         }
 
         // GET: StudentReservationController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            if (id < 1)
+            {
+                return NotFound();
+            }
+
+            var reservation = await _context.Reservations
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (reservation == null)
+            {
+                return NotFound();
+            }
+
+            return View(reservation);
         }
 
         // POST: StudentReservationController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, IFormCollection collection)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var reservation = await _context.Reservations.FindAsync(id);
+            _context.Reservations.Remove(reservation);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

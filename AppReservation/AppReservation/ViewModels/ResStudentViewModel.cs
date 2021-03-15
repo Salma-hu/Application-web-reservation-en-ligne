@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +10,7 @@ namespace AppReservation.ViewModels
 {
     public class ResStudentViewModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string FullName { get; set; }
 
@@ -32,5 +33,7 @@ namespace AppReservation.ViewModels
         //public int AccessNumber { get; set; }
         [DisplayName("Student")]
         public string StudentId { get; set; }
+        public DateTime CreateDate { get; set; }
+        public IdentityUser Student { get; set; }
     }
 }

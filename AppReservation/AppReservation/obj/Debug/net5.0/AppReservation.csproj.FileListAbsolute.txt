@@ -169,3 +169,6 @@ C:\Users\Youcode\Desktop\Les briefs\Application-web-reservation-en-ligne\AppRese
 C:\Users\Youcode\Desktop\Les briefs\Application-web-reservation-en-ligne\AppReservation\AppReservation\obj\Debug\net5.0\Razor\Views\Reservation\Index.cshtml.g.cs
 C:\Users\Youcode\Desktop\Les briefs\Application-web-reservation-en-ligne\AppReservation\AppReservation\obj\Debug\net5.0\Razor\Views\StudentReservation\Index.cshtml.g.cs
 C:\Users\Youcode\Desktop\Les briefs\Application-web-reservation-en-ligne\AppReservation\AppReservation\obj\Debug\net5.0\Razor\Views\StudentReservation\Create.cshtml.g.cs
+C:\Users\Youcode\Desktop\Les briefs\Application-web-reservation-en-ligne\AppReservation\AppReservation\obj\Debug\net5.0\Razor\Views\StudentReservation\Details2.cshtml.g.cs
+C:\Users\Youcode\Desktop\Les briefs\Application-web-reservation-en-ligne\AppReservation\AppReservation\obj\Debug\net5.0\Razor\Views\StudentReservation\Details.cshtml.g.cs
+C:\Users\Youcode\Desktop\Les briefs\Application-web-reservation-en-ligne\AppReservation\AppReservation\obj\Debug\net5.0\Razor\Views\StudentReservation\Delete.cshtml.g.cs

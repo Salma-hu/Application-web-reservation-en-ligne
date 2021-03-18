@@ -19,5 +19,9 @@ namespace AppReservation.Models
         public TypeReservation Reserv { get; set; }
         public int ReservId { get; set; }
 
+        public Reservation()
+        {
+            this.Status = Models.Status.Attente.ToString();
+        }
     }
 }

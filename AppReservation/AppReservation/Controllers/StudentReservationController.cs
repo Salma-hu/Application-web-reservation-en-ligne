@@ -46,6 +46,7 @@ namespace AppReservation.Controllers
                     Name = res.Reserv.name
                 })
             .Where(res => res.StudentId == user.Id)
+            
             .ToListAsync();
             return View(UserReservation);
         }
@@ -121,7 +122,6 @@ namespace AppReservation.Controllers
                 {
 
                     Date = studentReservation.Date,
-                    Status = studentReservation.Status,
                     Cause = studentReservation.Cause,
                     StudentId = IdUser,
                     Reserv = resType

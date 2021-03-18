@@ -23,7 +23,7 @@ namespace AppReservation.Controllers
         }
 
         [HttpPost]
-        public async Task <IActionResult> AddRole(Role model)
+        public async Task<IActionResult> AddRole(Role model)
         {
             if (ModelState.IsValid)
             {
@@ -43,7 +43,7 @@ namespace AppReservation.Controllers
                     ModelState.AddModelError("", error.Description);
                 }
             }
-            
+
             return View(model);
         }
 

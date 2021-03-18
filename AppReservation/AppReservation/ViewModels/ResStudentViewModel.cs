@@ -35,5 +35,10 @@ namespace AppReservation.ViewModels
         public string StudentId { get; set; }
         public DateTime CreateDate { get; set; }
         public IdentityUser Student { get; set; }
+
+        public ResStudentViewModel()
+        {
+            this.Status = Models.Status.Attente.ToString();
+        }
     }
 }

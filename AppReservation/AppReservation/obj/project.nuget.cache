@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0oO5PUOT5vxDTrYKps/qBmAKVHTj1BjM0FCpzLNmgj9rV/HPu2S0nsDMYZ2hdCubIBWln4PsBI2BEvv9+mdyJg==",
+  "dgSpecHash": "kuIWHP6kz7o2chTcHAP4ozJXy43cC5GzX/eds1mByf6cEEvIQzJ9IyuqeG7g+ZAxvCeEL/ogDiTgyGZSpL4mKw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Youcode\\Desktop\\Les briefs\\Application-web-reservation-en-ligne\\AppReservation\\AppReservation\\AppReservation.csproj",
   "expectedPackageFiles": [
@@ -63,7 +63,7 @@
     "C:\\Users\\Youcode\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Youcode\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\Youcode\\.nuget\\packages\\mysqlconnector\\1.0.1\\mysqlconnector.1.0.1.nupkg.sha512",
-    "C:\\Microsoft\\Xamarin\\NuGet\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\Youcode\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
     "C:\\Users\\Youcode\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\5.0.0-alpha.1\\pomelo.entityframeworkcore.mysql.5.0.0-alpha.1.nupkg.sha512",
     "C:\\Users\\Youcode\\.nuget\\packages\\pomelo.jsonobject\\2.2.1\\pomelo.jsonobject.2.2.1.nupkg.sha512",
     "C:\\Users\\Youcode\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",

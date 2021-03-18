@@ -1,4 +1,5 @@
-﻿using AppReservation.Data;
+﻿using AppReservation.Common;
+using AppReservation.Data;
 using AppReservation.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -22,16 +23,58 @@ namespace AppReservation.Controllers
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
-        }               
-                        
+        }
+
         // GET: ReservationController
-        public async Task <ActionResult> Index()
+        public async Task<ActionResult> Index()
         {
+
+            ViewBag.List = Utile.StatusToList();
+
+
             var list = await _context.Reservations
-                .Include(t=> t.Reserv)
+                .Include(t => t.Reserv)
                 .Include(s => s.Student)
+                .OrderBy(r => r.Date)
+                .Where(r => r.Status == Status.Attente.ToString())
                 .ToListAsync();
-            return View("Index",list);
+            return View("Index", list);
+
+        }
+
+        // GET: ReservationController
+        public async Task<ActionResult> History()
+        {
+
+            ViewBag.List = Utile.StatusToList();
+
+
+            var list = await _context.Reservations
+                .Include(t => t.Reserv)
+                .Include(s => s.Student)
+                .OrderBy(r => r.Date)
+                .ToListAsync();
+            return View(list);
+
+        }
+
+        public async Task<ActionResult> filterParDate(DateTime filterDate)
+        {
+            if (filterDate.Year == 0001)
+            {
+                return RedirectToAction(nameof(History));
+            }
+            else
+            {
+
+                var list = await _context.Reservations
+                               .Include(t => t.Reserv)
+                               .Include(s => s.Student)
+                               .OrderBy(r => r.Date)
+                               .Where(r => r.Date == filterDate)
+                               .ToListAsync();
+                return View("History", list);
+            }
         }
 
         // GET: ReservationController/Details/5
@@ -103,6 +146,19 @@ namespace AppReservation.Controllers
             {
                 return View();
             }
+        }
+
+
+
+        public async Task<ActionResult> ChangeStatusAsync(string Id, string status)
+        {
+
+            var reservation = await _context.Reservations.FirstAsync(r => r.Id.ToString() == Id);
+            reservation.Status = status;
+            _context.Update(reservation);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
         }
     }
 }

@@ -117,5 +117,109 @@ namespace AppReservation.Controllers
 
         }
 
+
+        //************************************************************** EditUsersRole ******************************************************************************
+
+        [HttpGet]
+        public async Task<IActionResult> EditUsersRole(string roleId)
+        {
+            if (string.IsNullOrEmpty(roleId))
+            {
+                return View("../Errors/NotFound", $"The role must be exist and not empty in Url");
+
+            }
+            var role = await roleManager.FindByIdAsync(roleId);
+            if (role is null)
+            {
+                return View("../Errors/NotFound", $"The role Id : {role.Id} cannot be found");
+            }
+
+            var Models = new List<EditUsersRole>();
+
+            foreach (var user in await userManager.Users.ToListAsync())
+            {
+                EditUsersRole model = new EditUsersRole()
+                {
+                    UserId = user.Id,
+                    UserName = user.UserName,
+                    IsSelected = false
+                };
+                if (await userManager.IsInRoleAsync(user, role.Name))
+                {
+                    model.IsSelected = true;
+                }
+                else
+                {
+                    model.IsSelected = false;
+                }
+
+                Models.Add(model);
+            }
+            ViewBag.RoleId = roleId;
+            return View(Models);
+
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> EditUsersRole(List<EditUsersRole> model, string roleId)
+        {
+            if (string.IsNullOrEmpty(roleId))
+            {
+                return View("../Errors/NotFound", $"The role must be exist and not empty in Url");
+
+            }
+            var role = await this.roleManager.FindByIdAsync(roleId);
+            if (role is null)
+            {
+                return View("../Errors/NotFound", $"The role Id : {role.Id} cannot be found");
+            }
+
+            // role if deja affectté et in model is select il faut le supprimer , ou l'affecté si il est selecté au model mais non affecté before
+
+            IdentityResult result = null;
+
+            for (int i = 0; i < model.Count; i++)
+            {
+                IdentityUser user = await userManager.FindByNameAsync(model[i].UserName);
+
+                if (model[i].IsSelected && !(await userManager.IsInRoleAsync(user, role.Name)))
+                {
+                    result = await userManager.AddToRoleAsync(user, role.Name);
+                }
+                else if ((await userManager.IsInRoleAsync(user, role.Name)) && !model[i].IsSelected)
+                {
+                    result = await userManager.RemoveFromRoleAsync(user, role.Name);
+
+                }
+                else
+                {
+                    continue;
+                }
+                if (result.Succeeded)
+                {
+                    if (i < (model.Count - 1))
+                        continue;
+                    else
+                        return RedirectToAction("EditRole", new { Id = roleId });
+                }
+                //if (result.Succeeded)
+                //{
+                //    foreach (var error in result.Errors)
+                //    {
+                //        ModelState.AddModelError("", error.Description);
+                //    }
+
+                //}
+            }
+
+            return RedirectToAction("EditRole", new { id = roleId });
+
+        }
+
+
     }
+
+
 }

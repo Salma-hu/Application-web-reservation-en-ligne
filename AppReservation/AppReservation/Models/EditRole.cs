@@ -8,13 +8,13 @@ namespace AppReservation.Models
 {
     public class EditRole
     {
-        /*[Display(Name = "ID:")]
+        [Display(Name = "ID:")]
         public string Id { get; set; }
 
         [Required(ErrorMessage = "The role name field is required !")]
         [Display(Name = "Enter The Name:")]
         public string RoleName { get; set; }
 
-        public List<string> Users { get; set; }*/
+        public List<string> Users { get; set; }
     }
 }

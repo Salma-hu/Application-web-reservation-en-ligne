@@ -1,6 +1,7 @@
 ﻿using AppReservation.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,20 +62,24 @@ namespace AppReservation.Controllers
         [HttpGet]
         public async Task<IActionResult> EditRole(string id)
         {
-            var role = await roleManager.FindByNameAsync(id);
-            if (role == null)
+            if (id is null)
             {
-                ViewBag.ErrorMessage = $"Role with Id = {id} cannet be found";
-                return View();
+                return View("../Errors/NotFound", "Please add the role Id in URL");
+            }
+            IdentityRole role = await roleManager.FindByIdAsync(id);
+            if (role is null)
+            {
+                return View("../Errors/NotFound", $"The role Id : {id} cannot be found");
             }
 
-            var model = new EditRole
+            EditRole model = new EditRole()
             {
                 Id = role.Id,
                 RoleName = role.Name,
+                Users = new List<string>()
             };
 
-            foreach (var user in userManager.Users)
+            foreach (IdentityUser user in await userManager.Users.ToListAsync()) // userManager.Users is not awaitble so change to (await userManager.Users.ToListAsync())
             {
                 if (await userManager.IsInRoleAsync(user, role.Name))
                 {
@@ -82,34 +87,34 @@ namespace AppReservation.Controllers
                 }
             }
             return View(model);
-
         }
-
 
         [HttpPost]
         public async Task<IActionResult> EditRole(EditRole model)
         {
-            var role = await roleManager.FindByNameAsync(model.Id);
-            if (role == null)
+            if (ModelState.IsValid)
             {
-                ViewBag.ErrorMessage = $"Role with Id = {model.Id} cannet be found";
-                return View();
-            }
-            else
-            {
+                var role = await roleManager.FindByIdAsync(model.Id);
+                if (role is null)
+                {
+                    return View("../Errors/NotFound", $"The role Id : {model.Id} cannot be found");
+                }
                 role.Name = model.RoleName;
-                var result = await roleManager.UpdateAsync(role);
+
+                IdentityResult result = await roleManager.UpdateAsync(role);
 
                 if (result.Succeeded)
                 {
                     return RedirectToAction("ListRoles");
                 }
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError("", error.Description);
                 }
-                return View(model);
             }
+            return View(model);
+
         }
 
     }

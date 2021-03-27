@@ -1,6 +1,7 @@
 ﻿using AppReservation.Data;
 using AppReservation.Models;
 using AppReservation.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace AppReservation.Controllers
 {
+    [Authorize(Roles = "Student")]
     public class StudentReservationController : Controller
     {
 

@@ -118,6 +118,20 @@ namespace AppReservation.Controllers
         }
 
 
+
+
+        [HttpPost]
+        public async Task<ActionResult> DeleteRole(string id)
+        {
+            IdentityRole role = await roleManager.FindByIdAsync(id);
+            if (!(role is null))
+            {
+                var result = await roleManager.DeleteAsync(role);
+            }
+            return RedirectToAction(nameof(ListRoles));
+        }
+
+
         //************************************************************** EditUsersRole ******************************************************************************
 
         [HttpGet]

@@ -25,19 +25,32 @@
                         <li class="nav-item">
                             <a class="btn btn-danger mb-2 mr-3" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-danger mb-2 mr-3" asp-area="" asp-controller="Reservation" asp-action="Index">Reservation</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-danger mb-2 mr-3" asp-area="" asp-controller="TypeReservation" asp-action="Index">TypeReservation</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="btn btn-danger dropdown-toggle mb-2 mr-3" data-toggle="dropdown" href="#" role="button">Roles</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-action="AddRole" asp-controller="Role">Create</a>
+                                    <a class="dropdown-item" asp-action="ListRoles" asp-controller="Role">Manage Role</a>
+                                </div>
+                            </li>
+
+                        }
+                        else if (User.IsInRole("Student"))
+                        {
                         <li class="nav-item">
-                            <a class="btn btn-danger mb-2 mr-3" asp-area="" asp-controller="Reservation" asp-action="Index">Reservation</a>
+                            <a class="btn btn-danger mb-2 mr-3" asp-area="" asp-controller="StudentReservation" asp-action="Index">Reservations</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="btn btn-danger mb-2 mr-3" asp-area="" asp-controller="TypeReservation" asp-action="Index">TypeReservation</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="btn btn-danger dropdown-toggle mb-2 mr-3" data-toggle="dropdown" href="#" role="button">Roles</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-action="AddRole" asp-controller="Role">Create</a>
-                                <a class="dropdown-item" asp-action="ListRoles" asp-controller="Role">Manage Role</a>
-                            </div>
-                        </li>
+
+                        }
+
+
                     </ul>
                 </div>
             </div>

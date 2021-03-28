@@ -3,7 +3,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table text-center">
     <thead>
         <tr>
             <th>
@@ -15,7 +15,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+
+            </th>
+
         </tr>
     </thead>
     <tbody>
@@ -29,6 +35,22 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td >
+                @{ if (item.Status == Status.Attente.ToString())
+                    {
+                        <p class="bg-primary rounded px-2 py-1 text-light">@item.Status</p>
+                    }
+                    else if (item.Status == Status.Confirmé.ToString())
+                    {
+                        <p class="bg-success text-light rounded px-2 py-1">@item.Status</p>
+
+                    }
+                    else
+                    {
+                        <p class="bg-danger text-light rounded px-2 py-1">@item.Status</p>
+                    }
+                }
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

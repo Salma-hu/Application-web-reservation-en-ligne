@@ -7,7 +7,7 @@
 
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary" asp-action="Create"><i class='bx bx-message-square-add'></i></a>
 </p>
 <table class="table">
     <thead>
@@ -31,9 +31,8 @@
                 @Html.DisplayFor(modelItem => item.AccessNumber)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a class="btn btn-success rounded-circle" asp-action="Edit" asp-route-id="@item.Id"><i class='bx bxs-pencil'></i></a> |
+                <a class="btn btn-danger rounded-circle" asp-action="Delete" asp-route-id="@item.Id"><i class='bx bx-trash'></i></a>
             </td>
         </tr>
 }

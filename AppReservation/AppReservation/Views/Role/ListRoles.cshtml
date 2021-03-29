@@ -28,8 +28,8 @@
 
                 <td>
                     <form method="post" asp-action="DeleteRole" asp-controller="Role" asp-route-id="@role.Id">
-                        <a class="btn btn-warning text-white btn-sm" asp-action="EditRole" asp-controller="Role" asp-route-id="@role.Id">Update</a>
-                        <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure ??')">Delete</button>
+                        <a class="btn text-white btn btn-success rounded-circle" asp-action="EditRole" asp-controller="Role" asp-route-id="@role.Id"><i class='bx bxs-pencil'></i></a>
+                        <button type="submit" class="btn btn-secondary rounded-circle btn btn-danger" onclick="return confirm('Are you sure ??')"><i class='bx bx-trash'></i></button>
                     </form>
 
                 </td>
@@ -54,8 +54,8 @@
 </div>}
 
 <div class="my-5 text-center">
-    <a asp-action="AddRole">Add Role</a> |
-    <a asp-action="index" asp-controller="student">Back to Home</a>
+    <a class="btn btn-secondary rounded-pill" asp-action="AddRole">Add Role</a> |
+    <a class="btn btn-secondary rounded-pill" asp-action="index" asp-controller="Home">Back to Home</a>
 </div>
 
 <div class=" my-3 text-danger" asp-validation-summary="All"></div>

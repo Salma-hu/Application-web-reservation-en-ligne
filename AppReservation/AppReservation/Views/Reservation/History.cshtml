@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<AppReservation.Models.Reservation>
 
 
-<div class="d-flex justify-content-between ">
+@*<div class="d-flex justify-content-between ">
     <form asp-action="filterParDate" asp-controller="Reservation">
 
         <label for="filtreDate">Date</label>
@@ -9,13 +9,19 @@
         <button type="submit" class="btn p-1">&#128270;</button>
 
     </form>
-</div>
+</div>*@
 
-<table class="table">
+<table id="mytable" class="table">
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Student.FullName)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reserv)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
@@ -28,24 +34,30 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reserv.name)
+            </td>
+            <td>
 
-                    @*<select asp-for="@item.Status" name="status" asp-items="@ViewBag.List">
-                        <option class="text-muted" selected disabled>Status</option>
-                        </select>*@
+                @*<select asp-for="@item.Status" name="status" asp-items="@ViewBag.List">
+            <option class="text-muted" selected disabled>Status</option>
+            </select>*@
 
-                    @Html.DisplayFor(modelItem => item.Status, "w-25")
+                @Html.DisplayFor(modelItem => item.Status, "w-25")
 
-                </td>
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cause)
-                </td>
-            </tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cause)
+            </td>
+        </tr>
         }
     </tbody>
 </table>

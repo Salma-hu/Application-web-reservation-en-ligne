@@ -1,0 +1,58 @@
+﻿<!-- ======= Header ======= -->
+<header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center justify-content-between">
+
+        <div class="logo">
+            <h1><a href="index.html">YouCode</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        </div>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto " asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a class="nav-link scrollto" href="#faq">The Rules</a></li>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="">
+                        <a class="" asp-area="" asp-controller="Reservation" asp-action="Index">Reservation</a>
+                    </li>
+                    <li class="">
+                        <a class="" asp-area="" asp-controller="TypeReservation" asp-action="Index">TypeReservation</a>
+                    </li>
+                    <li class="">
+                        <a class="" asp-area="" asp-controller="Reservation" asp-action="History">Historique</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="" data-toggle="dropdown" href="#" role="button">Roles</a>
+                        <ul class="">
+                            <li>
+
+                                <a class="" asp-action="AddRole" asp-controller="Role">Create</a>
+                            </li>
+                            <li>
+                                <a class="" asp-action="ListRoles" asp-controller="Role">Manage Role</a>
+
+                            </li>
+                        </ul>
+                    </li>
+
+                }
+                else if (User.IsInRole("Student"))
+                {
+                    <li class="">
+                        <a class="" asp-area="" asp-controller="StudentReservation" asp-action="Index">Reservations</a>
+                    </li>
+
+                }
+
+
+                <partial name="_LoginPartial" />
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+
+    </div>
+</header>
+<!-- End Header -->

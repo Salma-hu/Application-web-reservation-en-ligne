@@ -7,6 +7,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - YouCode Application Reservation</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <!-- Favicons -->
     <link href="~/assets/img/favicon.png" rel="icon">
@@ -27,65 +31,17 @@
     <link href="~/assets/css/style.css" rel="stylesheet">
 
     <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+    </style>
 </head>
 <body>
-    <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top ">
-        <div class="container d-flex align-items-center justify-content-between">
+    @{
+        if (ViewData["Title"] != "Log in")
+        {
 
-            <div class="logo">
-                <h1><a href="index.html">YouCode</a></h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-            </div>
-
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a class="nav-link scrollto " asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#faq">The Rules</a></li>
-
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <li class="">
-                            <a class="" asp-area="" asp-controller="Reservation" asp-action="Index">Reservation</a>
-                        </li>
-                        <li class="">
-                            <a class="" asp-area="" asp-controller="TypeReservation" asp-action="Index">TypeReservation</a>
-                        </li>
-                        <li class="">
-                            <a class="" asp-area="" asp-controller="Reservation" asp-action="History">Historique</a>
-                        </li>
-                        <li class="dropdown">
-                            <a class="" data-toggle="dropdown" href="#" role="button">Roles</a>
-                            <ul class="">
-                                <li>
-
-                                    <a class="" asp-action="AddRole" asp-controller="Role">Create</a>
-                                </li>
-                                <li>
-                                    <a class="" asp-action="ListRoles" asp-controller="Role">Manage Role</a>
-
-                                </li>
-                            </ul>
-                        </li>
-
-                    }
-                    else if (User.IsInRole("Student"))
-                    {
-                        <li class="">
-                            <a class="" asp-area="" asp-controller="StudentReservation" asp-action="Index">Reservations</a>
-                        </li>
-
-                    }
-
-
-                    <partial name="_LoginPartial" />
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-
-        </div>
-    </header><!-- End Header -->
+            <partial name="_Navbar" />
+        }
+    }
     @*<header>
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
                 <div class="container">
@@ -137,7 +93,7 @@
 
 
     @{
-        if (ViewData["Title"] == "Home Page")
+        if (ViewData["Title"] == "Home Page" || ViewData["Title"] == "Log in")
         {
 
             <div class="">
@@ -152,6 +108,7 @@
             <div class="p-5 m-4">
 
             </div>
+
             <div class="container">
                 <main role="main" class="pb-3">
                     @RenderBody()
@@ -161,77 +118,82 @@
         }
     }
 
+    @{
+        if (ViewData["Title"] != "Log in")
+        {
+            <!-- ======= Footer ======= -->
+            <footer id="footer">
 
-    
-    <!-- ======= Footer ======= -->
-    <footer id="footer">
-
-        <div class="footer-newsletter">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h4>You can contact us by leaving your messages here</h4>
-                        @*<p>You can contact us by leaving your messages here</p>*@
-                        <form action="" method="post">
-                            <input type="email" name="email"><input type="submit" value="Message">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>Appland</h3>
-                        <p>
-                            Boulevard moulay youssef,<br>
-                            Youssoufia,<br>
-                            Maroc <br><br>
-                            <strong>Phone:</strong> +212 589 5548 55<br>
-                            <strong>Email:</strong> YoucodeYoussoufia@gmail.com<br>
-                        </p>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">The Rules</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Social Networks</h4>
-                        <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
-                        <div class="social-links mt-3">
-                            <a href="https://twitter.com/youcode18" class="twitter"><i class="bx bxl-twitter"></i></a>
-                            <a href="https://www.facebook.com/YouCodeSchool" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="https://www.instagram.com/_youcode_/" class="instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="https://www.linkedin.com/company/youcode/" class="google-plus"><i class="bx bxl-skype"></i></a>
-                            <a href="https://www.linkedin.com/company/youcode/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <div class="footer-newsletter">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                                <h4>You can contact us by leaving your messages here</h4>
+                                @*<p>You can contact us by leaving your messages here</p>*@
+                                <form action="" method="post">
+                                    <input type="email" name="email"><input type="submit" value="Message">
+                                </form>
+                            </div>
                         </div>
                     </div>
-
                 </div>
-            </div>
-        </div>
 
-        <div class="container py-4">
-            <div class="copyright">
-                &copy; Copyright <strong><span>YouCode 2021</span></strong>. All Rights Reserved
-            </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-bootstrap-app-landing-page-template/ -->
-                Designed by <a href="https://youcode.ma/">Students Youcode</a>
-            </div>
-        </div>
-    </footer><!-- End Footer -->
+                <div class="footer-top">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-lg-3 col-md-6 footer-contact">
+                                <h3>Appland</h3>
+                                <p>
+                                    Boulevard moulay youssef,<br>
+                                    Youssoufia,<br>
+                                    Maroc <br><br>
+                                    <strong>Phone:</strong> +212 589 5548 55<br>
+                                    <strong>Email:</strong> YoucodeYoussoufia@gmail.com<br>
+                                </p>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 footer-links">
+                                <h4>Useful Links</h4>
+                                <ul>
+                                    <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                                    <li><i class="bx bx-chevron-right"></i> <a href="#">The Rules</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 footer-links">
+                                <h4>Our Social Networks</h4>
+                                <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+                                <div class="social-links mt-3">
+                                    <a href="https://twitter.com/youcode18" class="twitter"><i class="bx bxl-twitter"></i></a>
+                                    <a href="https://www.facebook.com/YouCodeSchool" class="facebook"><i class="bx bxl-facebook"></i></a>
+                                    <a href="https://www.instagram.com/_youcode_/" class="instagram"><i class="bx bxl-instagram"></i></a>
+                                    <a href="https://www.linkedin.com/company/youcode/" class="google-plus"><i class="bx bxl-skype"></i></a>
+                                    <a href="https://www.linkedin.com/company/youcode/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container py-4">
+                    <div class="copyright">
+                        &copy; Copyright <strong><span>YouCode 2021</span></strong>. All Rights Reserved
+                    </div>
+                    <div class="credits">
+                        <!-- All the links in the footer should remain intact. -->
+                        <!-- You can delete the links only if you purchased the pro version. -->
+                        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-bootstrap-app-landing-page-template/ -->
+                        Designed by <a href="https://youcode.ma/">Students Youcode</a>
+                    </div>
+                </div>
+            </footer><!-- End Footer -->
+        }
+    }
+
+
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -247,6 +209,16 @@
 
     <!-- Template Main JS File -->
     <script src="~/assets/js/main.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#mytable').DataTable();
+        });
+    </script>
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
 
     @RenderSection("Scripts", required: false)
 </body>

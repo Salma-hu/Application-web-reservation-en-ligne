@@ -4,7 +4,7 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"]</h1>
+
 
 
 
@@ -54,7 +54,8 @@
                                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Register</button>
-                                
+                                <a asp-area="Identity" asp-page="/Account/login" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Log in</a>
+
 
                             </form>
                         </div>

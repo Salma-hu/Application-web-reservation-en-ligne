@@ -216,3 +216,4 @@ C:\Users\Youcode\Desktop\Les briefs\Application-web-reservation-en-ligne\AppRese
 C:\Users\Youcode\Desktop\Les briefs\Application-web-reservation-en-ligne\AppReservation\AppReservation\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Youcode\Desktop\Les briefs\Application-web-reservation-en-ligne\AppReservation\AppReservation\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 C:\Users\Youcode\Desktop\Les briefs\Application-web-reservation-en-ligne\AppReservation\AppReservation\obj\Debug\net5.0\Razor\Views\Shared\_Navbar.cshtml.g.cs
+C:\Users\Youcode\Desktop\Les briefs\Application-web-reservation-en-ligne\AppReservation\AppReservation\obj\Debug\net5.0\Razor\Views\Shared\_Footer.cshtml.g.cs
